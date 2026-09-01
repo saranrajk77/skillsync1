@@ -1,0 +1,2813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>SkillSync AI</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+:root{
+
+    --bg:#070b14;
+    --panel:#0d1422;
+    --panel2:#111b2d;
+    --border:rgba(255,255,255,.09);
+    --text:#f5f7fb;
+    --muted:#8d9ab0;
+    --purple:#7c5cff;
+    --cyan:#20d9c5;
+    --red:#ff5577;
+    --green:#35e0a1;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Inter,
+        system-ui,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(124,92,255,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(32,217,197,.12),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+}
+
+
+/* =====================================================
+   AUTH PAGE
+===================================================== */
+
+#authPage{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+.auth-card{
+
+    width:min(450px,100%);
+
+    padding:38px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,27,45,.97),
+            rgba(9,14,25,.97)
+        );
+
+    border:1px solid var(--border);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+
+}
+
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.logo-icon{
+
+    width:64px;
+
+    height:64px;
+
+    display:grid;
+
+    place-items:center;
+
+    margin:auto;
+
+    margin-bottom:14px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--cyan)
+        );
+
+    font-size:28px;
+
+    font-weight:900;
+
+}
+
+
+.logo h1{
+
+    font-size:28px;
+
+}
+
+
+.logo h1 span{
+
+    color:var(--cyan);
+
+}
+
+
+.logo p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+.auth-title{
+
+    margin-bottom:20px;
+
+}
+
+
+.auth-title h2{
+
+    font-size:22px;
+
+    margin-bottom:7px;
+
+}
+
+
+.auth-title p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+.field{
+
+    margin-bottom:16px;
+
+}
+
+
+label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#cbd2df;
+
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    height:48px;
+
+    padding:0 14px;
+
+    border-radius:10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    background:#080f1d;
+
+    color:white;
+
+    outline:none;
+
+}
+
+
+select option{
+
+    background:#0d1422;
+
+}
+
+
+input:focus,
+select:focus{
+
+    border-color:var(--purple);
+
+}
+
+
+.primary-btn{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #5f45df
+        );
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.primary-btn:hover{
+
+    opacity:.9;
+
+}
+
+
+.switch{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+.switch span{
+
+    color:var(--cyan);
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+
+.message{
+
+    text-align:center;
+
+    margin-top:14px;
+
+    min-height:20px;
+
+    font-size:13px;
+
+}
+
+
+.error{
+
+    color:var(--red);
+
+}
+
+
+.success{
+
+    color:var(--cyan);
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+#dashboardPage{
+
+    display:none;
+
+    min-height:100vh;
+
+}
+
+
+.navbar{
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(7,11,20,.88);
+
+    backdrop-filter:blur(20px);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+}
+
+
+.nav-logo{
+
+    font-size:21px;
+
+    font-weight:900;
+
+}
+
+
+.nav-logo span{
+
+    color:var(--cyan);
+
+}
+
+
+.user-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.user-name{
+
+    color:#cbd2df;
+
+    font-size:13px;
+
+}
+
+
+.logout{
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:#111827;
+
+    color:white;
+
+    border-radius:8px;
+
+    padding:9px 13px;
+
+    cursor:pointer;
+
+}
+
+
+.main{
+
+    width:min(1400px,92%);
+
+    margin:auto;
+
+    padding:35px 0 70px;
+
+}
+
+
+.hero{
+
+    margin-bottom:30px;
+
+}
+
+
+.hero h1{
+
+    font-size:32px;
+
+    letter-spacing:-1px;
+
+}
+
+
+.hero p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+}
+
+
+/* =====================================================
+   SEARCH PANEL
+===================================================== */
+
+.search-panel{
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    margin-bottom:25px;
+
+}
+
+
+.search-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    gap:15px;
+
+}
+
+
+.search-btn{
+
+    margin-top:23px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #5f45df
+        );
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   SKILL INPUT
+===================================================== */
+
+.skills-area{
+
+    margin-top:20px;
+
+}
+
+
+.skill-input-row{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+.skill-input-row input{
+
+    flex:1;
+
+}
+
+
+.add-btn{
+
+    width:90px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:var(--cyan);
+
+    color:#06100f;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.skill-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:12px;
+
+}
+
+
+.skill-tag{
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    background:
+        rgba(124,92,255,.15);
+
+    border:
+        1px solid
+        rgba(124,92,255,.3);
+
+    font-size:12px;
+
+}
+
+
+.skill-tag button{
+
+    background:none;
+
+    border:none;
+
+    color:var(--red);
+
+    cursor:pointer;
+
+    margin-left:5px;
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+.stat{
+
+    padding:22px;
+
+    border-radius:16px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+}
+
+
+.stat small{
+
+    color:var(--muted);
+
+}
+
+
+.stat h2{
+
+    margin-top:8px;
+
+    font-size:27px;
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+
+    margin-top:25px;
+
+}
+
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+
+.section-title h2{
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   JOB CARDS
+===================================================== */
+
+.jobs{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+.job-card{
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+}
+
+
+.job-card h3{
+
+    font-size:17px;
+
+    margin-bottom:8px;
+
+}
+
+
+.company{
+
+    color:var(--cyan);
+
+    font-size:13px;
+
+}
+
+
+.location{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+.job-skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:14px;
+
+}
+
+
+.job-skill{
+
+    padding:6px 8px;
+
+    border-radius:7px;
+
+    background:#111b2d;
+
+    font-size:11px;
+
+}
+
+
+.job-link{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    color:var(--cyan);
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   SKILL GAP
+===================================================== */
+
+.gap-box{
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.12),
+            rgba(32,217,197,.05)
+        );
+
+    border:
+        1px solid
+        rgba(124,92,255,.18);
+
+}
+
+
+.score{
+
+    font-size:42px;
+
+    font-weight:900;
+
+    color:var(--cyan);
+
+}
+
+
+.recommendations{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+
+.recommendation{
+
+    padding:16px;
+
+    border-radius:12px;
+
+    background:#0b1220;
+
+    border:1px solid var(--border);
+
+}
+
+
+.recommendation strong{
+
+    color:var(--cyan);
+
+}
+
+
+.recommendation p{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.5;
+
+}
+
+
+/* =====================================================
+   JOB MATCH
+===================================================== */
+
+.match{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:9px;
+
+    background:#0a1120;
+
+    font-size:12px;
+
+}
+
+
+.match strong{
+
+    color:var(--cyan);
+
+}
+
+
+.missing{
+
+    margin-top:7px;
+
+    color:#ff9aae;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrap{
+
+    overflow:auto;
+
+    border-radius:15px;
+
+    border:1px solid var(--border);
+
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:var(--panel);
+
+}
+
+
+th,
+td{
+
+    padding:14px;
+
+    text-align:left;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size:13px;
+
+}
+
+
+th{
+
+    color:var(--cyan);
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:var(--muted);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+    .search-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .jobs{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .recommendations{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .auth-card{
+
+        padding:26px 20px;
+
+    }
+
+    .hero h1{
+
+        font-size:25px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .user-name{
+
+        display:none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     AUTH
+===================================================== -->
+
+<section id="authPage">
+
+
+<div class="auth-card">
+
+
+<div class="logo">
+
+<div class="logo-icon">
+S
+</div>
+
+<h1>
+Skill<span>Sync</span> AI
+</h1>
+
+<p>
+Your career, synced with the market.
+</p>
+
+</div>
+
+
+<div id="loginForm">
+
+
+<div class="auth-title">
+
+<h2>
+Welcome back.
+</h2>
+
+<p>
+Sign in to continue to your career intelligence dashboard.
+</p>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Email address
+</label>
+
+<input
+    id="loginEmail"
+    type="email"
+    placeholder="you@example.com"
+>
+
+
+</div>
+
+
+<div class="field">
+
+<label>
+Password
+</label>
+
+<input
+    id="loginPassword"
+    type="password"
+    placeholder="Your password"
+>
+
+
+</div>
+
+
+<button
+    class="primary-btn"
+    onclick="login()"
+>
+
+Continue to SkillSync →
+
+</button>
+
+
+<div class="switch">
+
+Don't have an account?
+
+<span onclick="showRegister()">
+Create account
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div
+    id="registerForm"
+    style="display:none"
+>
+
+
+<div class="auth-title">
+
+<h2>
+Create your account.
+</h2>
+
+<p>
+Start building your career intelligence profile.
+</p>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Full name
+</label>
+
+<input
+    id="registerName"
+    type="text"
+    placeholder="Your name"
+>
+
+
+</div>
+
+
+<div class="field">
+
+<label>
+Email address
+</label>
+
+<input
+    id="registerEmail"
+    type="email"
+    placeholder="you@example.com"
+>
+
+
+</div>
+
+
+<div class="field">
+
+<label>
+Password
+</label>
+
+<input
+    id="registerPassword"
+    type="password"
+    placeholder="Minimum 6 characters"
+>
+
+
+</div>
+
+
+<button
+    class="primary-btn"
+    onclick="registerUser()"
+>
+
+Create SkillSync Account →
+
+</button>
+
+
+<div class="switch">
+
+Already have an account?
+
+<span onclick="showLogin()">
+Login
+</span>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="authMessage"
+    class="message"
+></div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboardPage">
+
+
+<nav class="navbar">
+
+
+<div class="nav-logo">
+
+Skill<span>Sync</span> AI
+
+</div>
+
+
+<div class="user-area">
+
+<span
+    id="userName"
+    class="user-name"
+>
+</span>
+
+<button
+    class="logout"
+    onclick="logout()"
+>
+Logout
+</button>
+
+</div>
+
+
+</nav>
+
+
+<main class="main">
+
+
+<div class="hero">
+
+<h1>
+Career Intelligence Dashboard
+</h1>
+
+<p>
+Compare your skills with real-time job-market demand.
+</p>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-panel">
+
+
+<div class="search-grid">
+
+
+<div>
+
+<label>
+Location
+</label>
+
+<input
+    id="location"
+    value="India"
+    placeholder="India"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Target Job Role
+</label>
+
+<input
+    id="role"
+    value="Backend Developer"
+    placeholder="Backend Developer"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Search keyword
+</label>
+
+<input
+    id="keyword"
+    value="Backend Developer"
+    placeholder="Software Developer"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="skills-area">
+
+<label>
+Skills you already know
+</label>
+
+
+<div class="skill-input-row">
+
+<input
+    id="skillInput"
+    placeholder="Example: Java"
+    onkeydown="skillEnter(event)"
+>
+
+
+<button
+    class="add-btn"
+    onclick="addSkill()"
+>
+Add
+</button>
+
+</div>
+
+
+<div
+    id="skillTags"
+    class="skill-tags"
+></div>
+
+
+</div>
+
+
+<button
+    class="search-btn"
+    onclick="analyzeCareer()"
+>
+
+🚀 Analyze My Career
+
+</button>
+
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<small>
+Jobs analyzed
+</small>
+
+<h2 id="jobsCount">
+—
+</h2>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Skills detected
+</small>
+
+<h2 id="skillsCount">
+—
+</h2>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Companies
+</small>
+
+<h2 id="companiesCount">
+—
+</h2>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Your match
+</small>
+
+<h2 id="matchScore">
+—
+</h2>
+
+</div>
+
+
+</div>
+
+
+<!-- SKILL GAP -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+🎯 Your Skill Gap
+</h2>
+
+</div>
+
+
+<div class="gap-box">
+
+<div>
+
+Your current job-market match
+
+</div>
+
+
+<div
+    id="overallScore"
+    class="score"
+>
+—
+</div>
+
+
+<p
+    id="gapSummary"
+    style="
+        color:var(--muted);
+        margin-top:7px;
+    "
+>
+Enter your skills and analyze the market.
+</p>
+
+
+<div
+    id="recommendations"
+    class="recommendations"
+></div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- JOBS -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+💼 Live Job Opportunities
+</h2>
+
+</div>
+
+
+<div
+    id="jobs"
+    class="jobs"
+>
+
+<div class="loading">
+Run an analysis to load live jobs.
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- SKILL DEMAND -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+🔥 Market Skill Demand
+</h2>
+
+</div>
+
+
+<div
+    id="skillTable"
+    class="table-wrap"
+>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Skill
+</th>
+
+<th>
+Jobs
+</th>
+
+<th>
+Demand
+</th>
+
+<th>
+Priority
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="skillBody">
+
+<tr>
+
+<td colspan="4">
+Run an analysis.
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+<!-- COMPANIES -->
+
+<section class="section">
+
+
+<div class="section-title">
+
+<h2>
+🏢 Companies Hiring
+</h2>
+
+</div>
+
+
+<div
+    id="companyTable"
+    class="table-wrap"
+>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Company
+</th>
+
+<th>
+Jobs
+</th>
+
+<th>
+Top Skills
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="companyBody">
+
+<tr>
+
+<td colspan="3">
+Run an analysis.
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let mySkills = [];
+
+
+/* =====================================================
+   AUTH MESSAGE
+===================================================== */
+
+function authMessage(
+    text,
+    type = "error"
+){
+
+    const element =
+        document.getElementById(
+            "authMessage"
+        );
+
+    element.textContent = text;
+
+    element.className =
+        "message " + type;
+
+}
+
+
+/* =====================================================
+   SHOW LOGIN
+===================================================== */
+
+function showLogin(){
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "block";
+
+    document.getElementById(
+        "registerForm"
+    ).style.display = "none";
+
+    authMessage("");
+
+}
+
+
+/* =====================================================
+   SHOW REGISTER
+===================================================== */
+
+function showRegister(){
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "none";
+
+    document.getElementById(
+        "registerForm"
+    ).style.display = "block";
+
+    authMessage("");
+
+}
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+async function registerUser(){
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+
+    if(
+        !name ||
+        !email ||
+        !password
+    ){
+
+        authMessage(
+            "Please fill in all fields."
+        );
+
+        return;
+
+    }
+
+
+    authMessage(
+        "Creating your account...",
+        "success"
+    );
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/auth/register",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    credentials:"include",
+
+                    body:JSON.stringify({
+
+                        name,
+                        email,
+                        password
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Registration failed."
+            );
+
+        }
+
+
+        authMessage(
+            "Account created. Opening dashboard...",
+            "success"
+        );
+
+
+        setTimeout(
+            () => {
+
+                openDashboard(
+                    data.user
+                );
+
+            },
+            500
+        );
+
+
+    }catch(error){
+
+        authMessage(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+async function login(){
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    if(
+        !email ||
+        !password
+    ){
+
+        authMessage(
+            "Enter your email and password."
+        );
+
+        return;
+
+    }
+
+
+    authMessage(
+        "Verifying your account...",
+        "success"
+    );
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/auth/login",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    credentials:"include",
+
+                    body:JSON.stringify({
+
+                        email,
+                        password
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                "Login failed."
+            );
+
+        }
+
+
+        authMessage(
+            "Login successful. Opening dashboard...",
+            "success"
+        );
+
+
+        setTimeout(
+            () => {
+
+                openDashboard(
+                    data.user
+                );
+
+            },
+            400
+        );
+
+
+    }catch(error){
+
+        authMessage(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN DASHBOARD
+===================================================== */
+
+function openDashboard(user){
+
+    document.getElementById(
+        "authPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "userName"
+    ).textContent =
+        user.name;
+
+
+    loadSavedSkills();
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout(){
+
+    try{
+
+        await fetch(
+            "/api/auth/logout",
+            {
+
+                method:"POST",
+
+                credentials:"include"
+
+            }
+        );
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+
+    mySkills = [];
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "authPage"
+    ).style.display = "flex";
+
+    showLogin();
+
+}
+
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+function addSkill(){
+
+    const input =
+        document.getElementById(
+            "skillInput"
+        );
+
+    const skill =
+        input.value.trim();
+
+
+    if(!skill){
+
+        return;
+
+    }
+
+
+    const exists =
+        mySkills.some(
+            item =>
+                item.toLowerCase() ===
+                skill.toLowerCase()
+        );
+
+
+    if(exists){
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    mySkills.push(skill);
+
+    input.value = "";
+
+    renderSkills();
+
+}
+
+
+function skillEnter(event){
+
+    if(
+        event.key === "Enter"
+    ){
+
+        addSkill();
+
+    }
+
+}
+
+
+function removeSkill(index){
+
+    mySkills.splice(
+        index,
+        1
+    );
+
+    renderSkills();
+
+}
+
+
+function renderSkills(){
+
+    const container =
+        document.getElementById(
+            "skillTags"
+        );
+
+
+    container.innerHTML =
+        mySkills
+            .map(
+                (skill,index) => `
+
+                <div class="skill-tag">
+
+                    ${escapeHTML(skill)}
+
+                    <button
+                        onclick="removeSkill(${index})"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+function loadSavedSkills(){
+
+    renderSkills();
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ANALYZE CAREER
+===================================================== */
+
+async function analyzeCareer(){
+
+    const location =
+        document.getElementById(
+            "location"
+        ).value.trim() ||
+        "India";
+
+    const role =
+        document.getElementById(
+            "role"
+        ).value.trim() ||
+        "Software Developer";
+
+    const keyword =
+        document.getElementById(
+            "keyword"
+        ).value.trim() ||
+        role;
+
+
+    if(mySkills.length === 0){
+
+        document.getElementById(
+            "gapSummary"
+        ).textContent =
+            "Add at least one skill you already know, such as Java or Python.";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "jobs"
+    ).innerHTML =
+        `<div class="loading">
+            🔄 Analyzing live job market...
+        </div>`;
+
+
+    try{
+
+        const query =
+            new URLSearchParams({
+
+                keyword,
+                location,
+                skills:
+                    mySkills.join(",")
+
+            });
+
+
+        /*
+         * Fetch everything in parallel.
+         */
+
+        const [
+            jobsResponse,
+            skillsResponse,
+            companiesResponse,
+            gapResponse
+        ] =
+            await Promise.all([
+
+                fetch(
+                    `/api/jobs?${query}`
+                ),
+
+                fetch(
+                    `/api/skills?${query}`
+                ),
+
+                fetch(
+                    `/api/companies?${query}`
+                ),
+
+                fetch(
+                    `/api/skill-gap?${query}`
+                )
+
+            ]);
+
+
+        const jobsData =
+            await jobsResponse.json();
+
+        const skillsData =
+            await skillsResponse.json();
+
+        const companiesData =
+            await companiesResponse.json();
+
+        const gapData =
+            await gapResponse.json();
+
+
+        if(
+            !jobsResponse.ok ||
+            !skillsResponse.ok ||
+            !companiesResponse.ok ||
+            !gapResponse.ok
+        ){
+
+            throw new Error(
+                gapData.error ||
+                jobsData.error ||
+                "Analysis failed."
+            );
+
+        }
+
+
+        renderStats(
+            jobsData,
+            skillsData,
+            companiesData,
+            gapData
+        );
+
+
+        renderSkillGap(
+            gapData,
+            role
+        );
+
+
+        renderJobs(
+            gapData.jobs
+        );
+
+
+        renderSkillsTable(
+            skillsData.skills
+        );
+
+
+        renderCompanies(
+            companiesData.companies
+        );
+
+
+    }catch(error){
+
+        document.getElementById(
+            "jobs"
+        ).innerHTML = `
+
+            <div class="loading">
+
+                ❌ ${escapeHTML(error.message)}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function renderStats(
+    jobs,
+    skills,
+    companies,
+    gap
+){
+
+    document.getElementById(
+        "jobsCount"
+    ).textContent =
+        jobs.totalJobs || 0;
+
+
+    document.getElementById(
+        "skillsCount"
+    ).textContent =
+        skills.skills?.length || 0;
+
+
+    document.getElementById(
+        "companiesCount"
+    ).textContent =
+        companies.totalCompanies || 0;
+
+
+    document.getElementById(
+        "matchScore"
+    ).textContent =
+        `${gap.overallScore || 0}%`;
+
+}
+
+
+/* =====================================================
+   SKILL GAP
+===================================================== */
+
+function renderSkillGap(
+    data,
+    role
+){
+
+    document.getElementById(
+        "overallScore"
+    ).textContent =
+        `${data.overallScore || 0}%`;
+
+
+    document.getElementById(
+        "gapSummary"
+    ).textContent =
+        `Based on ${data.jobsAnalyzed} live ${role} job listings, these skills can improve your job match.`;
+
+
+    const container =
+        document.getElementById(
+            "recommendations"
+        );
+
+
+    if(
+        !data.recommendations ||
+        data.recommendations.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="recommendation">
+
+                <strong>Great match 🎉</strong>
+
+                <p>
+                    No major missing skills were detected
+                    from the analyzed job listings.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        data.recommendations
+            .map(
+                item => `
+
+                <div class="recommendation">
+
+                    <strong>
+                        Learn ${escapeHTML(item.skill)}
+                    </strong>
+
+                    <p>
+
+                        Appears in
+                        <b>
+                            ${item.demand}%
+                        </b>
+                        of analyzed jobs.
+
+                        <br><br>
+
+                        🎯 Recommendation:
+                        Add ${escapeHTML(item.skill)}
+                        to your skill set to improve
+                        your match for
+                        ${escapeHTML(role)}
+                        positions.
+
+                    </p>
+
+                </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   JOBS
+===================================================== */
+
+function renderJobs(jobs){
+
+    const container =
+        document.getElementById(
+            "jobs"
+        );
+
+
+    if(
+        !jobs ||
+        jobs.length === 0
+    ){
+
+        container.innerHTML =
+            `<div class="loading">
+                No jobs found.
+            </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        jobs
+            .slice(0,20)
+            .map(
+                job => {
+
+                    const missing =
+                        job.missingSkills || [];
+
+                    return `
+
+                    <article
+                        class="job-card"
+                    >
+
+                        <h3>
+                            ${escapeHTML(job.title)}
+                        </h3>
+
+                        <div class="company">
+                            ${escapeHTML(job.company)}
+                        </div>
+
+                        <div class="location">
+                            📍 ${escapeHTML(job.location)}
+                        </div>
+
+
+                        <div class="job-skills">
+
+                            ${
+                                (job.skills || [])
+                                .slice(0,10)
+                                .map(
+                                    skill => `
+
+                                    <span
+                                        class="job-skill"
+                                    >
+                                        ${escapeHTML(skill)}
+                                    </span>
+
+                                    `
+                                )
+                                .join("")
+                            }
+
+                        </div>
+
+
+                        <div class="match">
+
+                            <strong>
+                                Your match:
+                                ${job.matchPercentage || 0}%
+                            </strong>
+
+
+                            ${
+                                missing.length
+                                ? `
+
+                                <div class="missing">
+
+                                    ⚠️ Skill gap:
+
+                                    ${missing
+                                        .map(
+                                            skill =>
+                                                escapeHTML(skill)
+                                        )
+                                        .join(", ")
+                                    }
+
+                                </div>
+
+                                `
+                                : `
+
+                                <div
+                                    style="
+                                        color:var(--green);
+                                        margin-top:7px;
+                                    "
+                                >
+                                    ✓ You have the detected
+                                    skills for this listing.
+                                </div>
+
+                                `
+                            }
+
+                        </div>
+
+
+                        ${
+                            job.url
+                            ? `
+
+                            <a
+                                class="job-link"
+                                href="${escapeHTML(job.url)}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                View job →
+                            </a>
+
+                            `
+                            : ""
+                        }
+
+                    </article>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   SKILL TABLE
+===================================================== */
+
+function renderSkillsTable(skills){
+
+    const body =
+        document.getElementById(
+            "skillBody"
+        );
+
+
+    if(
+        !skills ||
+        skills.length === 0
+    ){
+
+        body.innerHTML =
+            `<tr>
+                <td colspan="4">
+                    No skill data found.
+                </td>
+            </tr>`;
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        skills
+            .slice(0,30)
+            .map(
+                skill => `
+
+                <tr>
+
+                    <td>
+                        <b>
+                            ${escapeHTML(skill.name)}
+                        </b>
+                    </td>
+
+                    <td>
+                        ${skill.jobs}
+                    </td>
+
+                    <td>
+                        ${skill.demandPercentage}%
+                    </td>
+
+                    <td>
+                        ${skill.priority}
+                    </td>
+
+                </tr>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   COMPANIES
+===================================================== */
+
+function renderCompanies(companies){
+
+    const body =
+        document.getElementById(
+            "companyBody"
+        );
+
+
+    if(
+        !companies ||
+        companies.length === 0
+    ){
+
+        body.innerHTML =
+            `<tr>
+                <td colspan="3">
+                    No companies found.
+                </td>
+            </tr>`;
+
+        return;
+
+    }
+
+
+    body.innerHTML =
+        companies
+            .slice(0,30)
+            .map(
+                company => {
+
+                    const topSkills =
+                        (company.skills || [])
+                            .slice(0,5)
+                            .map(
+                                skill =>
+                                    escapeHTML(
+                                        skill.name
+                                    )
+                            )
+                            .join(", ");
+
+
+                    return `
+
+                    <tr>
+
+                        <td>
+                            <b>
+                                ${escapeHTML(company.name)}
+                            </b>
+                        </td>
+
+                        <td>
+                            ${company.jobs}
+                        </td>
+
+                        <td>
+                            ${topSkills || "—"}
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   CHECK LOGIN ON PAGE LOAD
+===================================================== */
+
+async function checkLogin(){
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/auth/me",
+                {
+                    credentials:"include"
+                }
+            );
+
+
+        if(
+            response.ok
+        ){
+
+            const data =
+                await response.json();
+
+            openDashboard(
+                data.user
+            );
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Not logged in."
+        );
+
+    }
+
+}
+
+
+checkLogin();
+
+</script>
+
+</body>
+
+</html>
